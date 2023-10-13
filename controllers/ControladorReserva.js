@@ -1,4 +1,4 @@
-export class ControladorHabitacion{
+export class ControladorReserva{
     constructor(){}
 
     buscarTodas(request, response){
@@ -9,13 +9,13 @@ export class ControladorHabitacion{
 
             response.status(200).json({
                 "estado":true,
-                "mensaje":"Exito buscando las habitaciones",
+                "mensaje":"Exito buscando las reservas",
                 "datos":"ACA VAN LOS DATOS CONSULTADOS DE LA BD"
             })
         }catch(error){
             response.status(400).json({
                 "estado":false,
-                "mensaje":"Fallamos buscando las habitaciones " + error,
+                "mensaje":"Fallamos buscando las reservas " + error,
                 "datos":null
             })
         }
@@ -31,13 +31,13 @@ export class ControladorHabitacion{
             // 3. Respondo al cliente
             response.status(200).json({
                 "estado":true,
-                "mensaje":"Exito buscando la habitacion",
+                "mensaje":"Exito buscando la reserva",
                 "datos":"ACA VAN LOS DATOS CONSULTADOS DE LA BD"
             })
         }catch(error){
             response.status(400).json({
                 "estado":false,
-                "mensaje":"Fallamos buscando la habitacion " + error,
+                "mensaje":"Fallamos buscando la reserva " + error,
                 "datos":null
             })
         }
@@ -54,13 +54,13 @@ export class ControladorHabitacion{
             // 3. Enviar la respuesta
             response.status(200).json({
                 "estado":true,
-                "mensaje":"Exito modificando la habitacion",
+                "mensaje":"Exito modificando la reserva",
                 "datos":null
             })
         }catch(error){
             response.status(400).json({
                 "estado":false,
-                "mensaje":"Fallamos modificando la habitacion " + error,
+                "mensaje":"Fallamos modificando la reserva " + error,
                 "datos":null
             })
         }
@@ -76,13 +76,13 @@ export class ControladorHabitacion{
             // 3. Responda
             response.status(200).json({
                 "estado":true,
-                "mensaje":"Exito registrando la habitacion",
+                "mensaje":"Exito registrando la reserva",
                 "datos":null
             })
         }catch(error){
             response.status(400).json({
                 "estado":false,
-                "mensaje":"Fallamos registrando la habitacion " + error,
+                "mensaje":"Fallamos registrando la reserva " + error,
                 "datos":null
             })
         }
@@ -98,16 +98,15 @@ export class ControladorHabitacion{
             // 3. Responda
             response.status(200).json({
                 "estado":true,
-                "mensaje":"Exito borrando la habitacion",
+                "mensaje":"Exito borrando la reserva",
                 "datos":null
             })
         }catch(error){
             response.status(400).json({
                 "estado":false,
-                "mensaje":"Fallamos borrando la habitacion " + error,
+                "mensaje":"Fallamos borrando la reserva " + error,
                 "datos":null
             })
         }
     }
 }
-
