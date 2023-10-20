@@ -1,16 +1,19 @@
+import { ServicioHabitacion } from "../Services/ServicioHabitacion.js"
+
 export class ControladorHabitacion{
     constructor(){}
 
-    buscarTodas(request, response){
+     async buscarTodas(request, response){
         try{
             // 1. Hay que recibir datos
             // 2. Intentare conectarme a BD
             // 3. Envio la respuesta
 
+            let serviciohabitacion = new ServicioHabitacion()
             response.status(200).json({
                 "estado":true,
                 "mensaje":"Exito buscando las habitaciones",
-                "datos":"ACA VAN LOS DATOS CONSULTADOS DE LA BD"
+                "datos": await serviciohabitacion.buscarTodas()
             })
         }catch(error){
             response.status(400).json({
@@ -21,10 +24,10 @@ export class ControladorHabitacion{
         }
     }
 
-    buscarPorId(request, response){
+    async buscarPorId(request, response){
         try{
             // 1. Hay que recibir datos (Si)
-
+            let serviciohabitacion = new ServicioHabitacion()
             let id = request.params.id
 
             // 2. Con el id que mando el cliente busco la habitacion en BD
@@ -32,7 +35,7 @@ export class ControladorHabitacion{
             response.status(200).json({
                 "estado":true,
                 "mensaje":"Exito buscando la habitacion",
-                "datos":"ACA VAN LOS DATOS CONSULTADOS DE LA BD"
+                "datos": await serviciohabitacion.buscarPorId(id)
             })
         }catch(error){
             response.status(400).json({
@@ -43,12 +46,13 @@ export class ControladorHabitacion{
         }
     }
 
-    modificar(request, response){
+    async modificar(request, response){
         try{
             // 1. Hay que recibir datos (Si)
-
+            let serviciohabitacion = new ServicioHabitacion()
             let id = request.params.id
             let datosModificar = request.body
+            await serviciohabitacion.modificar(id,datos) // ESTO
 
             // 2. Modificar en BD
             // 3. Enviar la respuesta
@@ -66,18 +70,22 @@ export class ControladorHabitacion{
         }
     }
 
-    registrar(request, response){
+    async registrar(request, response){
         try{
             // 1. Hay que recibir datos (Si)
-
+            let serviciohabitacion = new ServicioHabitacion()
             let datosRegistrar = request.body
+            // TOMAR 2 FECHAS DEL OBJETO DATOS
+            // LA DIFERENCIA EN DIA DE ESAS DOS FECHAS
+            // await serviciohabitacion.registrar(datos)
 
             // 2. Guardelos en BD
             // 3. Responda
             response.status(200).json({
                 "estado":true,
                 "mensaje":"Exito registrando la habitacion",
-                "datos":null
+                "datos":datosRegistrar,
+                "diferencia": "diferencia en dia calculado"
             })
         }catch(error){
             response.status(400).json({
@@ -88,11 +96,13 @@ export class ControladorHabitacion{
         }
     }
 
-    eliminar(request, response){
+    async eliminar(request, response){
         try{
             // 1. Hay que recibir datos (Si)
-
+            let serviciohabitacion = new ServicioHabitacion()
             let id = request.params.id
+
+            //ELIMINAR DATOS (RESERVAS TAMBIEN)
 
             // 2 . Eliminelo de la BD
             // 3. Responda

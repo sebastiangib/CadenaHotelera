@@ -1,16 +1,18 @@
+import { ServicioReserva } from "../Services/ServicioReserva.js"
 export class ControladorReserva{
     constructor(){}
 
-    buscarTodas(request, response){
+    async buscarTodas(request, response){
         try{
             // 1. Hay que recibir datos
             // 2. Intentare conectarme a BD
             // 3. Envio la respuesta
 
+            let servicioreserva = new ServicioReserva()
             response.status(200).json({
                 "estado":true,
                 "mensaje":"Exito buscando las reservas",
-                "datos":"ACA VAN LOS DATOS CONSULTADOS DE LA BD"
+                "datos":await servicioreserva.buscarTodas()
             })
         }catch(error){
             response.status(400).json({
@@ -21,10 +23,10 @@ export class ControladorReserva{
         }
     }
 
-    buscarPorId(request, response){
+    async buscarPorId(request, response){
         try{
             // 1. Hay que recibir datos (Si)
-
+            let servicioreserva = new ServicioReserva()
             let id = request.params.id
 
             // 2. Con el id que mando el cliente busco la habitacion en BD
@@ -32,7 +34,7 @@ export class ControladorReserva{
             response.status(200).json({
                 "estado":true,
                 "mensaje":"Exito buscando la reserva",
-                "datos":"ACA VAN LOS DATOS CONSULTADOS DE LA BD"
+                "datos":await servicioreserva.buscarPorId(id)
             })
         }catch(error){
             response.status(400).json({
@@ -43,19 +45,20 @@ export class ControladorReserva{
         }
     }
 
-    modificar(request, response){
+    async modificar(request, response){
         try{
             // 1. Hay que recibir datos (Si)
-
+            let servicioreserva = new ServicioReserva()
             let id = request.params.id
             let datosModificar = request.body
+            await servicioreserva.modificar(id,datos) // ESTO
 
             // 2. Modificar en BD
             // 3. Enviar la respuesta
             response.status(200).json({
                 "estado":true,
                 "mensaje":"Exito modificando la reserva",
-                "datos":null
+                "datos":null // ACA TIENE QUE VER "ESTO"
             })
         }catch(error){
             response.status(400).json({
@@ -66,10 +69,10 @@ export class ControladorReserva{
         }
     }
 
-    registrar(request, response){
+    async registrar(request, response){
         try{
             // 1. Hay que recibir datos (Si)
-
+            let servicioreserva = new ServicioReserva()
             let datosRegistrar = request.body
 
             // 2. Guardelos en BD
@@ -88,10 +91,10 @@ export class ControladorReserva{
         }
     }
 
-    eliminar(request, response){
+    async eliminar(request, response){
         try{
             // 1. Hay que recibir datos (Si)
-
+            let servicioreserva = new ServicioReserva()
             let id = request.params.id
 
             // 2 . Eliminelo de la BD
