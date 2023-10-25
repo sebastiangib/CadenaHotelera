@@ -51,7 +51,7 @@ export class ControladorReserva{
             let servicioreserva = new ServicioReserva()
             let id = request.params.id
             let datosModificar = request.body
-            await servicioreserva.modificar(id,datos) // ESTO
+            await servicioreserva.modificar(id,datosModificar) // ESTO
 
             // 2. Modificar en BD
             // 3. Enviar la respuesta
@@ -75,6 +75,8 @@ export class ControladorReserva{
             let servicioreserva = new ServicioReserva()
             let datosRegistrar = request.body
 
+            await servicioreserva.registrar(datosRegistrar)
+
             // 2. Guardelos en BD
             // 3. Responda
             response.status(200).json({
@@ -97,6 +99,7 @@ export class ControladorReserva{
             let servicioreserva = new ServicioReserva()
             let id = request.params.id
 
+            await servicioreserva.eliminar(id)
             // 2 . Eliminelo de la BD
             // 3. Responda
             response.status(200).json({

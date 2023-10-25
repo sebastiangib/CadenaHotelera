@@ -52,7 +52,7 @@ export class ControladorHabitacion{
             let serviciohabitacion = new ServicioHabitacion()
             let id = request.params.id
             let datosModificar = request.body
-            await serviciohabitacion.modificar(id,datos) // ESTO
+            await serviciohabitacion.modificar(id,datosModificar) // ESTO
 
             // 2. Modificar en BD
             // 3. Enviar la respuesta
@@ -77,7 +77,7 @@ export class ControladorHabitacion{
             let datosRegistrar = request.body
             // TOMAR 2 FECHAS DEL OBJETO DATOS
             // LA DIFERENCIA EN DIA DE ESAS DOS FECHAS
-            // await serviciohabitacion.registrar(datos)
+            await serviciohabitacion.registrar(datosRegistrar)
 
             // 2. Guardelos en BD
             // 3. Responda
@@ -101,6 +101,8 @@ export class ControladorHabitacion{
             // 1. Hay que recibir datos (Si)
             let serviciohabitacion = new ServicioHabitacion()
             let id = request.params.id
+
+            await serviciohabitacion.eliminar(id)
 
             //ELIMINAR DATOS (RESERVAS TAMBIEN)
 
