@@ -9,10 +9,11 @@ export class ControladorReserva{
             // 3. Envio la respuesta
 
             let servicioreserva = new ServicioReserva()
+            const reservas = await servicioreserva.buscarTodas();
             response.status(200).json({
                 "estado":true,
                 "mensaje":"Exito buscando las reservas",
-                "datos":await servicioreserva.buscarTodas()
+                "datos":reservas
             })
         }catch(error){
             response.status(400).json({
@@ -34,7 +35,8 @@ export class ControladorReserva{
             response.status(200).json({
                 "estado":true,
                 "mensaje":"Exito buscando la reserva",
-                "datos":await servicioreserva.buscarPorId(id)
+                "datos":await servicioreserva.buscarPorId(id),
+                "diferencia":await servicioreserva.fechas(id)
             })
         }catch(error){
             response.status(400).json({
@@ -59,6 +61,7 @@ export class ControladorReserva{
                 "estado":true,
                 "mensaje":"Exito modificando la reserva",
                 "datos":null // ACA TIENE QUE VER "ESTO"
+                
             })
         }catch(error){
             response.status(400).json({
@@ -82,7 +85,7 @@ export class ControladorReserva{
             response.status(200).json({
                 "estado":true,
                 "mensaje":"Exito registrando la reserva",
-                "datos":null
+                "datos":datosRegistrar
             })
         }catch(error){
             response.status(400).json({
