@@ -84,8 +84,7 @@ export class ControladorHabitacion{
             response.status(200).json({
                 "estado":true,
                 "mensaje":"Exito registrando la habitacion",
-                "datos":datosRegistrar,
-                "diferencia": "diferencia en dia calculado"
+                "datos":datosRegistrar
             })
         }catch(error){
             response.status(400).json({

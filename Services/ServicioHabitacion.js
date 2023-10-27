@@ -5,12 +5,12 @@ export class ServicioHabitacion{
     constructor(){}
 
     async buscarTodas(){
-        let habitaciones = await modeloHabitacion.find()
-        return habitaciones
+        const habitaciones = await modeloHabitacion.find().select('-__v');
+        return habitaciones;
     }
     async buscarPorId(id){
-        let habitacion = await modeloHabitacion.findById(id)
-        return habitacion
+        const habitacion = await modeloHabitacion.findById(id).select('-__v'); // El signo '-' indica que se excluye el campo __v
+        return habitacion;
     }
     async modificar(id,datos){
         return await modeloHabitacion.findByIdAndUpdate(id,datos)
